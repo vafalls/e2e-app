@@ -1,0 +1,30 @@
+<html>
+<head>
+
+</head>
+<body>
+	<h1>E2E Application!</h1>
+	<script type="application/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js">
+	</script>
+	<script type="application/javascript">
+	alert("hejsan");
+
+	$(document).ready(function(){
+		$("#mybutton").on( "click", function() {
+			getName();
+		})
+	});
+	function getName() {
+		jQuery.getJSON( "http://localhost:8080/e2e-app/Hotel", function(response) { 
+    		alert(response);
+		});
+	}
+	</script>
+	<input type="button" id="mybutton"/>
+
+	<div id="mydiv">
+
+	</div>
+</body>
+</html>
+
