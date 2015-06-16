@@ -1,30 +1,26 @@
 package com.e2e.rest;
 
-import java.util.ArrayList;
+import java.util.Collection;
 
-import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+
+import com.training.jee.demo.entities.CompactDisc;
+import com.tranning.jee.bean.CompactDiscLocal;
 
 @Path("/")
 public class SimpleREST {
 	
+	
+	@Inject
+	private CompactDiscLocal cdService;
+	
 	@GET()
 	@Produces({"application/json"})
 	@Path("/Hotel")
-	public ArrayList<String> getHotels() {
-		ArrayList<String> a = new ArrayList<String>();
-		a.add("david");
-		a.add("nogen");
-	    return a;
+	public Collection<CompactDisc> getAllDiscs() {
+		return cdService.getDiscs();
 	}
-	
-//	@GET
-//  @Path("/{name}")
-//  @Produces({"application/xml","application/json", "text/plain"})
-//  public String sayHello(@PathParam("name") String name){
-//     return "hello " + name;
-//  }
 }
