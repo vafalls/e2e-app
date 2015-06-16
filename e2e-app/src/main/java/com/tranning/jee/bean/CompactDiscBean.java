@@ -19,9 +19,10 @@ public class CompactDiscBean implements CompactDiscLocal {
 	
 	static {
 		library = new HashMap<Integer, CompactDisc>();
+		library.put(0,  new CompactDisc(0, "Europe", "Final Countdown", 30.99, 8));
 		library.put(1,  new CompactDisc(1, "Europe", "Final Countdown", 30.99, 8));
-		library.put(1,  new CompactDisc(1, "Abba", "Abba Gold", 31.99, 12));
-		library.put(1,  new CompactDisc(1, "Spice Girls", "Spice World", 42.99, 9));
+		library.put(2,  new CompactDisc(2, "Abba", "Abba Gold", 31.99, 12));
+		library.put(3,  new CompactDisc(3, "Spice Girls", "Spice World", 42.99, 9));
 		
 	}
 
