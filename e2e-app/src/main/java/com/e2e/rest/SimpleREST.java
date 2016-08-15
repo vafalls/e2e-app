@@ -1,14 +1,14 @@
 package com.e2e.rest;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 
-import com.training.jee.demo.entities.CompactDisc;
-import com.tranning.jee.bean.CompactDiscLocal;
+import com.e2e.bean.CompactDiscLocal;
+import com.e2e.entities.CompactDisc;
 
 @Path("/")
 public class SimpleREST {
@@ -19,8 +19,17 @@ public class SimpleREST {
 	
 	@GET()
 	@Produces({"application/json"})
-	@Path("/Hotel")
+	@Path("/getAllDiscs")
 	public Collection<CompactDisc> getAllDiscs() {
 		return cdService.getDiscs();
 	}
+	
+	@POST
+    @Path("/addNewDisc")
+    @Consumes({MediaType.TEXT_PLAIN})
+    public void addNewDisc(String s) {
+		//Hotel hotel = new Hotel(name, noOfRooms);
+		System.out.println("recieved in rest "+s);
+		cdService.addNewDisc(s);
+    }
 }

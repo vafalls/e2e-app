@@ -1,0 +1,64 @@
+<html>
+  <head>
+
+  </head>
+  <body>
+    <h1>E2E Application!</h1>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js">
+    </script>
+    <script type="text/javascript" src="jquery.jsontotable.min.js"></script>
+    <script type="text/javascript">
+
+      function getName() {
+      jQuery.getJSON( "http://localhost:8080/e2e-app/api/getAllDiscs", function(data) {
+      document.getElementById("outputField").innerHTML = null; //clear outputfield
+      $.jsontotable(data, {id: '#outputField', header: true});
+      });
+      }
+
+      function getValue(){
+      document.getElementById("cmd").value;
+      switch(document.getElementById("cmd").value){
+      case "list":
+      getName();
+      break;
+      default:
+      document.getElementById("outputField").innerHTML = null; //clear outputfield
+      alert("Can't recognize command");
+      }
+      }
+
+    </script>
+
+    <div id="somename">
+      <input type="text" name="cmd" id="cmd" value="list">
+      <input type="submit" onclick="getValue()">
+    </div>
+    <div id="outputField"</div>
+
+	 </body>
+</html>
+
+<!-- working script
+     $(document).ready(
+     function(){
+     $("#mybutton").on( "click", function() {
+     getName();
+     })
+     });
+     function getName() {
+     jQuery.getJSON( "http://localhost:8080/e2e-app/api/Hotel", function(data) { 
+     $.jsontotable(data, {id: '#jsontotable', header: true});
+     alert(data);
+     });
+     }
+
+
+     $(document).ready(
+     function(){
+     jQuery.getJSON( "http://localhost:8080/e2e-app/api/Hotel", function(data, source) { 
+     $.jsontotable(data, {id: '#jsontotable'});
+     //alert(response);
+     });
+     });
+  -->

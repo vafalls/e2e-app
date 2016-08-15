@@ -9,7 +9,52 @@
 	<script type="text/javascript" src="jquery.jsontotable.min.js"></script>
 	<script type="text/javascript">
 
-	$(document).ready(
+	function getAllDiscs(){
+		jQuery.getJSON( "http://localhost:8080/e2e-app/api/getAllDiscs", function(data) {
+			document.getElementById("outputField").innerHTML = null;
+    		$.jsontotable(data, {id: '#outputField', header: true});
+    	});
+	}
+	function addNewDisc(){
+		$.ajax({
+			type: 'POST',
+			url: "http://localhost:8080/e2e-app/api/addNewDisc",
+    		data: "stringtobesent",
+    		success: null,
+    		dataType: "text"
+		});
+	}
+
+	function submit(){
+		text = document.getElementById("cmd").value;
+		
+		if(text == "list"){
+			getAllDiscs();
+		}
+		else if(text.match(/add.*/)){
+			addNewDisc();
+		}
+		else{
+			document.getElementById("outputField").innerHTML = "Can't recognize command";
+		}
+				
+	}
+
+	</script>
+
+	<div id="somename">
+		<input type="text" name="cmd" id="cmd" value="list">
+		<input type="submit" onclick="submit()">
+	</div>
+	<div id="outputField"></div>
+
+	</body>
+</html>
+
+<!--\s[0-9]{1,3}\stitle	artist	price	tracks/)){-->
+
+<!-- working script
+		$(document).ready(
 		function(){
 		$("#mybutton").on( "click", function() {
 			getName();
@@ -30,11 +75,4 @@
     		//alert(response);
 		});
 	});
-	</script>
-	
-	<button type="button" id="mybutton">Click Me!</button>
-
-	<div id="jsontotable"></div>
-</body>
-</html>
-
+-->
